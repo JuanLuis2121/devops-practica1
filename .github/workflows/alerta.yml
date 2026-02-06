@@ -1,0 +1,22 @@
+name: Alerta CI DevOps
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Mostrar mensaje
+        run: echo "Hola Mundo - GitHub Actions ejecutándose"
+
+      - name: Enviar notificación a ntfy
+        run: |
+          curl -X POST \
+          -H "Title: GitHub Actions CI" \
+          -H "Priority: 3" \
+          -d "Se ha hecho un push al repositorio devops-practica1 en la rama main 🚀" \
+          https://ntfy.sh/devops-itla
